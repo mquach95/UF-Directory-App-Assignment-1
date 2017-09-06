@@ -1,13 +1,19 @@
 /* Fill out these functions using Mongoose queries*/
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    Listing = require('./ListingSchema.js'),
+    config = require('./config');
+
+mongoose.connect(config.db.uri);
 
 var findLibraryWest = function() {
   /* 
     Find the document that contains data corresponding to Library West,
     then log it to the console. 
    */
-    Listing.findOne({ code: 'LBW' }, function(error, listing) {
-        if(error)
-            throw error;
+    Listing.findOne({ name: 'Library West' }, function(err, listing) {
+        if(err)
+            throw err;
         console.log(listing);
     });
 };
@@ -17,10 +23,15 @@ var removeCable = function() {
     on cable TV. Since we live in the 21st century and most courses are now web based, go ahead
     and remove this listing from your database and log the document to the console. 
    */
-    Listing.findOneandRemove({ code: 'CABL'}, function(error, listing) {
-        if(error)
-            throw error;
+    Listing.findOne({ code: 'CABL'}, function(err, listing) {
+        if(err)
+            throw err;
         console.log(listing);
+        listing.remove(function(err) {
+            if(err)
+                throw err;
+            console.log("removed");
+        });
     });
 };
 var updatePhelpsLab = function() {
@@ -28,9 +39,9 @@ var updatePhelpsLab = function() {
     Phelps Laboratory's address is incorrect. Find the listing, update it, and then 
     log the updated document to the console. 
    */
-    Listing.findOneAndUpdate({ code: 'PHL', {address'Phelps Lab, Gainesville, FL, 32608'}}, function(error, listing) {
-        if (error)
-            throw error;
+    Listing.findOneAndUpdate({ code: 'PHL' }, {address: 'Phelps Lab, Gainesville, FL, 32608'}, function(err, listing) {
+        if (errr)
+            throw err;
         console.log(listing)
     });
 };
@@ -39,9 +50,9 @@ var retrieveAllListings = function() {
   /* 
     Retrieve all listings in the database, and log them to the console. 
    */
-    Listing.find({}, function(error, listing) {
-        if (error)
-            throw error;
+    Listing.find({}, function(err, listing) {
+        if (err)
+            throw err;
         console.log(listing);
     });
     
