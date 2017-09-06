@@ -17,16 +17,16 @@ mongoose.connect(config.db.uri);
  */
 var fs = require('fs');
 var listingData;
-fs.readFile('listings.json','utf8', function(error, data) {
-    if (error)
-        throw error;
+fs.readFile('listings.json','utf8', function(err, data) {
+    if (err)
+        throw err;
     listingData = JSON.parse(data).entries;
     
-    for(var i = 0;i<listingData.length;i++) {
+    for(var i = 0; i < listingData.length; i++) {
         var buildingData = new Listing(listingData[i]);
         buildingData.save(function(err) {
-            if(error)
-                throw error;
+            if(err)
+                throw err;
         });
     }
     
