@@ -18,7 +18,7 @@
 
               -->
             <span class="input-group-addon" id="sizing-addon1"><span class="glyphicon glyphicon-search"></span></span>
-            <input type="text" class="form-control" placeholder="Search">
+            <input type="text" class="form-control" placeholder="Search" ng-model="entries">
           </div>
           <div class="tableWrapper">
             <table class="table table-striped table-hover">
@@ -27,7 +27,13 @@
                 <th>Building Name</th>
                 <th></th>
               </tr>
-              <!-- 
+                <tr ng-repeat="entries in listings | filter: entries" ng-click="showDetails(entries)">
+                    <td>{{entries.code}}</td>
+                    <td>{{entries.name}}</td>
+                    <td><span ng-click="deleteListing($index)">x</span></td>
+                </tr>
+              
+                <!-- 
 
                   Fill in the rest of the table:
                       * populate the rows with the code and name of each listing
@@ -41,6 +47,12 @@
               Write an HTML form that adds new listings to the directory 
 
             -->
+        <div style="margin-top: 20px;">
+            Code: <input type="text" ng-model="entryCode">
+            Building: <input type="text" ng-model="entryName">
+            <button type="button" class="btn btn-primary" ng-click="addListing()">Add</button>
+        </div>
+            
         </div>
         <div class="col-md-6">
           <div class="jumbotron">
@@ -51,6 +63,9 @@
                    * consider how to use ng-click within the the table to implement this feature
 
              -->
+              <p>Latitude: {{selectedEntry.coordinates.latitude}}</p>
+              <p>Longitude: {{selectedEntry.coordinates.longitude}}</p>
+              <p>Address: {{selectedEntry.address}}</p>
           </div>
         </div>
       </div>
