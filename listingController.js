@@ -10,7 +10,12 @@ angular.module('listings').controller('ListingsController', ['$scope', 'Listings
     $scope.addListing = function() {
         $scope.listings.push({
             code: $scope.entryCode,
-            name: $scope.entryName
+            name: $scope.entryName,
+            coordinates: {
+              latitude: $scope.entryLat,
+              longitude: $scope.entryLong
+            },
+            address: $scope.entryAddress
         });
     };
     $scope.deleteListing = function(index) {

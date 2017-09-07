@@ -1,8 +1,44 @@
+body {
+	background-color: #FA4616;
+}
+
+.container {
+	background-color: #fff;
+}
+
 #searchBar {
   margin: 15px 10px;
+}
+
+#header {
+	background-color: #0021A5;
+	color: #FFFFFF;
+}
+
+#addForm {
+	margin-bottom: 20px;
+}
+
+#addForm input{
+	margin-bottom: 10px;
 }
 
 .tableWrapper {
   max-height: 400px;
   overflow: auto;
+}
+
+.jumbotron {
+	font-size: 14px;
+}
+
+h1 {
+	margin-left: 20px;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 18px;
+	font-weight: bold;
+	text-transform: uppercase;
 }

@@ -6,7 +6,7 @@
   </head>
   <body ng-app="directoryApp">
     <div class="container">
-      <div class="row">
+      <div id="header" class="row">
         <h1>UF Directory App</h1>
       </div>
       <div class="row" ng-controller="ListingsController">
@@ -30,7 +30,7 @@
                 <tr ng-repeat="entries in listings | filter: entries" ng-click="showDetails(entries)">
                     <td>{{entries.code}}</td>
                     <td>{{entries.name}}</td>
-                    <td><span ng-click="deleteListing($index)">x</span></td>
+                    <td><span ng-click="deleteListing($index)" style="cursor: pointer">x</span></td>
                 </tr>
               
                 <!-- 
@@ -47,15 +47,19 @@
               Write an HTML form that adds new listings to the directory 
 
             -->
-        <div style="margin-top: 20px;">
-            Code: <input type="text" ng-model="entryCode">
-            Building: <input type="text" ng-model="entryName">
+        <div id="addForm" style="margin-top: 20px;">
+            <h2>Add New Building</h2>
+            Code: <input type="text" class="form-control" ng-model="entryCode" style="width: 40%;">
+            Building Name: <input type="text" class="form-control" ng-model="entryName" style="width: 40%;">
+            Latitude: <input type="text" class="form-control" ng-model="entryLat" style="width: 40%;">
+            Longitude: <input type="text" class="form-control" ng-model="entryLong" style="width: 40%;">
+            Address: <input type="text" class="form-control" ng-model="entryAddress" style="width: 40%;">
             <button type="button" class="btn btn-primary" ng-click="addListing()">Add</button>
         </div>
             
         </div>
         <div class="col-md-6">
-          <div class="jumbotron">
+          <div class="jumbotron" style="margin-top: 50px">
             <h2>Detailed Information</h2>
             <!-- 
 
@@ -63,9 +67,9 @@
                    * consider how to use ng-click within the the table to implement this feature
 
              -->
-              <p>Latitude: {{selectedEntry.coordinates.latitude}}</p>
-              <p>Longitude: {{selectedEntry.coordinates.longitude}}</p>
-              <p>Address: {{selectedEntry.address}}</p>
+              Latitude: {{selectedEntry.coordinates.latitude}}<br />
+              Longitude: {{selectedEntry.coordinates.longitude}}<br />
+              Address: {{selectedEntry.address}}
           </div>
         </div>
       </div>
